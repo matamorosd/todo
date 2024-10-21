@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  # allow_unauthenticated_access only: [ :new ]
   before_action :set_project, only: [ :show, :edit, :update, :destroy ]
 
   # GET /projects/new
@@ -8,6 +9,7 @@ class ProjectsController < ApplicationController
 
   # POST /projects
   def create
+    current_user = User.find(1)
     @project = current_user.projects.build(project_params)
 
     if @project.save
